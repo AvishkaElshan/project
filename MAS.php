@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>MAS</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a href="index.php" class="logo">Home</a>
+
+      
+
+      <div class="icons">
+         
+         
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+
+      <div class="profile">
+         <img src="images/OIP.jpeg" class="image" alt="">
+         <h3 class="name">BOI</h3>
+         <p class="role">Investment Board</p>
+         <a href="admin.php" class="btn">view profile</a>
+         <div class="flex-btn">
+            <a href="login.html" class="option-btn">login</a>
+            <a href="adminregister.php" class="option-btn">register</a>
+         </div>
+      </div>
+
+   </section>
+
+</header>   
+
+<div class="side-bar">
+
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   <div class="profile">
+      <img src="images/OIP.jpeg" class="image" alt="">
+      <h3 class="name">BOI</h3>
+      <p class="role">Investment Board</p>
+      <a href="admin.php" class="btn">view profile</a>
+   </div>
+
+   <nav class="navbar">
+      <a href="silueta.html"><i></i><span>Silueta</span></a>
+      <a href="Rainwear.html"><i></i><span>Rainwear</span></a>
+      <a href="Stretchline.html"><i></i><span>Stretchline</span></a>
+      <a href="MAS.php"><i></i><span>MAS Kreeda</span></a>
+      <a href="Ocianlanka.html"><i></i><span>Ocianlanka</span></a>
+      <a href="Noyonlanka.html"><i></i><span>Noyonlanka</span></a>
+      <a href="unichela.html"><i></i><span>Unichela</span></a>
+      <a href="linea.html"><i></i><span>Linea Intimo</span></a>
+      <a href="northsails.html"><i></i><span>Northsails</span></a>
+      <a href="bradix.html"><i></i><span>Brandix</span></a>
+   </nav>
+
+
+</div>
+
+<section class="contact">
+
+
+
+<section class="contact">
+   
+   <div class="box-container">
+      <div class="box">
+         <img src="images/linea1.jpeg" alt="">
+         <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore at obcaecati quo. Ratione error dignissimos officiis obcaecati rem, accusantium ex placeat incidunt, provident architecto iste, maiores minus expedita consectetur veniam fugiat libero dolorem nam qui dolores iusto odit. Inventore ipsum sequi quam vitae adipisci porro molestias minima officia illum deleniti?</p>
+      </div>
+   </div>
+</section>
+   <div class="box-container">
+
+      <div class="box">
+         <i class="fas fa-phone"></i>
+         <h3>phone number</h3>
+         <a href="tel:1234567890">123-456-7890</a>
+         <a href="tel:1112223333">111-222-3333</a>
+      </div>
+      
+      <div class="box">
+         <i class="fas fa-envelope"></i>
+         <h3>email address</h3>
+         <a href="mailto:shaikhanas@gmail.com">shaikhanas@gmail.come</a>
+         <a href="mailto:anasbhai@gmail.com">anasbhai@gmail.come</a>
+      </div>
+
+      <div class="box">
+         <i class="fas fa-map-marker-alt"></i>
+         <h3>office address</h3>
+         <a href="#">flat no. 1, a-1 building, jogeshwari, mumbai, india - 400104</a>
+      </div>
+
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="footer">
+
+   &copy;  Investment Board | all rights reserved!
+
+</footer>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+   
+</body>
+</html>
