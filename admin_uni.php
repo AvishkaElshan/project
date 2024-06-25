@@ -28,7 +28,45 @@ if ($stmt) {
     $company_name = "Error";
 }
 
-$conn->close();
+// chart =========================================================
+
+
+
+// SQL query to fetch data from chart table
+$sql = "SELECT year, c1, c2, c3, c4, c5, c6, c7, c8 FROM chart WHERE emp_id = 1212";
+$result = $conn->query($sql);
+
+// Initialize an array to hold the data
+$data = array();
+
+// Add column headers
+$data[] = ['Year', 'customise', 'standard', 'Europ Customise', 'Europ Standard', 'Middle East Customise', 'Middle East Standard', 'Asian Customise', 'Asian Standard'];
+
+// Check if there are rows returned
+if ($result->num_rows > 0) {
+    // Loop through each row in the result set
+    while ($row = $result->fetch_assoc()) {
+        $data[] = [
+            $row['year'],
+            (int)$row['c1'],
+            (int)$row['c2'],
+            (int)$row['c3'],
+            (int)$row['c4'],
+            (int)$row['c5'],
+            (int)$row['c6'],
+            (int)$row['c7'],
+            (int)$row['c8']
+        ];
+    }
+}
+
+
+
+// Encode the data as JSON
+$jsonData = json_encode($data);
+
+
+// chart-----------------------------
 ?>
 
 <!DOCTYPE html>
@@ -48,27 +86,15 @@ $conn->close();
    <!-- chart from here  -->
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
+     google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'cutomise', 'standard', 'Europ Customise', 'Europ Standard', 'Middle East Customise', 'Middle East Standard', 'Asian Customise', 'Asian Standard'],
-          ['2010', 800, 2200, 150, 1300, 200, 600, 450, 300],
-          ['2011', 700, 1850, 120, 950, 170, 700, 410, 200],
-          ['2012', 440, 1900, 50, 1000, 100, 600, 250, 300],
-          ['2013', 660, 2400, 90, 1400, 100, 650, 470, 350],
-          ['2014', 720, 2450, 100, 1100, 100, 800, 520, 550],
-          ['2015', 850, 2220, 110, 1250, 180, 670, 560, 300],
-          ['2016', 770, 1850, 90, 950, 180, 650, 500, 250],
-          ['2017', 800, 1950, 120, 1000, 220, 700, 460, 250],
-          ['2018', 760, 1600, 150, 1050, 150, 400, 460, 150],
-          ['2019', 550, 1750, 100, 900, 120, 500, 330, 350],
-          ['2020', 2240, 1200, 500, 550, 600, 400, 1140, 250],
-          ['2021', 1890, 1000, 450, 400, 590, 300, 850, 300],
-          ['2022', 2450, 990, 600, 350, 550, 220, 1300, 420],
-          ['2023', 2800, 900, 800, 400, 1000, 200, 1000, 300],
-        ]);
+        // PHP JSON-encoded data
+        var jsonData = <?php echo $jsonData; ?>;
+        
+        // Convert JSON data to DataTable format
+        var data = google.visualization.arrayToDataTable(jsonData);
 
         var options = {
           chart: {
@@ -85,6 +111,14 @@ $conn->close();
     </script>
 
     <!-- to here -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
 </head>
 <body>
 

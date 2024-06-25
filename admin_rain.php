@@ -28,6 +28,8 @@ if ($stmt) {
     $company_name = "Error";
 }
 
+
+
 $conn->close();
 ?>
 

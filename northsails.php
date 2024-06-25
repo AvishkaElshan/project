@@ -4,18 +4,13 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Silueta</title>
-
-   <!-- Favicon -->
-   <link rel="icon" type="image/x-icon" href="images/OIP.jpeg">
+   <title>Northsails</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
-
-
 
 </head>
 <body>
@@ -36,12 +31,12 @@
       </div>
 
       <div class="profile">
-         <img src="images/OIP.jpeg" class="image" alt="">
+         <img src="OIP.jpeg" class="image" alt="">
          <h3 class="name">BOI</h3>
          <p class="role">Investment Board</p>
-         <a href="profile.html" class="btn">view profile</a>
+         <a href="admin.php" class="btn">view profile</a>
          <div class="flex-btn">
-            <a href="login.php" class="option-btn">login</a>
+            <a href="login.html" class="option-btn">login</a>
             <a href="adminregister.php" class="option-btn">register</a>
          </div>
       </div>
@@ -79,22 +74,6 @@
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <section class="contact">
 
    
@@ -124,6 +103,19 @@
    </div>
 
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <footer class="footer">
 
