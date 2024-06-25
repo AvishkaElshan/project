@@ -30,6 +30,42 @@ if ($stmt) {
 }
 
 
+
+
+
+// SQL query to fetch data from chart table
+$sql = "SELECT year, c1, c2, c3, c4, c5, c6, c7, c8 FROM chart WHERE emp_id = 1212";
+$result = $conn->query($sql);
+
+// Initialize an array to hold the data
+$data = array();
+
+// Add column headers
+$data[] = ['Year', 'customise', 'standard', 'Europ Customise', 'Europ Standard', 'Middle East Customise', 'Middle East Standard', 'Asian Customise', 'Asian Standard'];
+
+// Check if there are rows returned
+if ($result->num_rows > 0) {
+    // Loop through each row in the result set
+    while ($row = $result->fetch_assoc()) {
+        $data[] = [
+            $row['year'],
+            (int)$row['c1'],
+            (int)$row['c2'],
+            (int)$row['c3'],
+            (int)$row['c4'],
+            (int)$row['c5'],
+            (int)$row['c6'],
+            (int)$row['c7'],
+            (int)$row['c8']
+        ];
+    }
+}
+
+
+
+// Encode the data as JSON
+$jsonData = json_encode($data);
+
 ?>
 
 <!DOCTYPE html>
@@ -49,27 +85,15 @@ if ($stmt) {
    <!-- chart from here  -->
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
+     google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'cutomise', 'standard', 'Europ Customise', 'Europ Standard', 'Middle East Customise', 'Middle East Standard', 'Asian Customise', 'Asian Standard'],
-          ['2010', 800, 2200, 150, 1300, 200, 600, 450, 300],
-          ['2011', 700, 1850, 120, 950, 170, 700, 410, 200],
-          ['2012', 440, 1900, 50, 1000, 100, 600, 250, 300],
-          ['2013', 660, 2400, 90, 1400, 100, 650, 470, 350],
-          ['2014', 720, 2450, 100, 1100, 100, 800, 520, 550],
-          ['2015', 850, 2220, 110, 1250, 180, 670, 560, 300],
-          ['2016', 770, 1850, 90, 950, 180, 650, 500, 250],
-          ['2017', 800, 1950, 120, 1000, 220, 700, 460, 250],
-          ['2018', 760, 1600, 150, 1050, 150, 400, 460, 150],
-          ['2019', 550, 1750, 100, 900, 120, 500, 330, 350],
-          ['2020', 2240, 1200, 500, 550, 600, 400, 1140, 250],
-          ['2021', 1890, 1000, 450, 400, 590, 300, 850, 300],
-          ['2022', 2450, 990, 600, 350, 550, 220, 1300, 420],
-          ['2023', 2800, 900, 800, 400, 1000, 200, 1000, 300],
-        ]);
+        // PHP JSON-encoded data
+        var jsonData = <?php echo $jsonData; ?>;
+        
+        // Convert JSON data to DataTable format
+        var data = google.visualization.arrayToDataTable(jsonData);
 
         var options = {
           chart: {
@@ -247,8 +271,146 @@ if ($stmt) {
         ?>
     </tbody>
 </table>
+<div class="box-container">
+  <div class="box">
+    <div class="flex">
+      <section class="form-container" style="width: 100%;">
+        <form action="editC.php" method="post" enctype="multipart/form-data">
+          <h2>Edit chart</h2> <br>
+            <p>Enter Your Employee ID: <span>*</span></p>
+            <input type="text" name="emp_id" placeholder="enter your employee ID" class="box" style="height:20px">
+         
+          <p>Enter th Year<span>*</span></p>
+          <input type="text" name="year" placeholder="enter year" class="box" style="height:20px">
+
+          <p>Enter th column 1 Value<span>*</span></p>
+          <input type="text" name="c1" placeholder="enter Value" class="box" style="height:20px">
+
+          <p>Enter th column 2 Value<span>*</span></p>
+          <input type="text" name="c2" placeholder="enter Value" class="box" style="height:20px">
+
+          <p>Enter th column 3 Value<span>*</span></p>
+          <input type="text" name="c3" placeholder="enter Value" class="box" style="height:20px">
+
+          <p>Enter th column 4 Value<span>*</span></p>
+          <input type="text" name="c4" placeholder="enter Value" class="box" style="height:20px">
+
+          <p>Enter th column 5 Value<span>*</span></p>
+          <input type="text" name="c5" placeholder="enter Value" class="box" style="height:20px">
+
+          <p>Enter th column 6 Value<span>*</span></p>
+          <input type="text" name="c6" placeholder="enter Value" class="box" style="height:20px">
+
+          <p>Enter th column 7 Value<span>*</span></p>
+          <input type="text" name="c7" placeholder="enter Value" class="box" style="height:20px">
+
+          <p>Enter th column 8 Value<span>*</span></p>
+          <input type="text" name="c8" placeholder="enter Value" class="box" style="height:20px">
+
+          <input type="submit" value="Submit" name="editC" class="btn" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+        </form>
+      </section>
+    </div>
+  </div>
+</div>
+
+<?php
+        if (isset($_SESSION['message'])): ?>
+
+            <div style="display:flex; top:30px;font-size:15px" class="alert alert-<?= $_SESSION['msg_type'] ?> fade show" role="alert">
+
+                <?php
+                echo $_SESSION['message'];
+                unset($_SESSION['message']);
+                unset($_SESSION['msg_type']);
+
+                ?>
 
 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php endif; ?>
+
+<table id="tbl" class="table table-hover dt-responsive" style="width: 100%;">
+    <thead class="thead-dark">
+        <tr style="font-size: 15px;">
+            <th>Emp_ID</th>
+            <th>Year</th>
+            <th>column1</th>
+            <th>column2</th>
+            <th>column3</th>
+            <th>column4</th>
+            <th>column5</th>
+            <th>column6</th>
+            <th>column7</th>
+            <th>column8</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        // Establish database connection (assuming $conn is already defined in db_connect.php)
+        require_once "db_connect.php";
+
+        // SQL query to fetch data from addpic_table
+        $sql = "SELECT * FROM chart";
+        $result = $conn->query($sql);
+
+        // Check if there are rows returned
+        if ($result->num_rows > 0) {
+            // Loop through each row in the result set
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <tr>
+                    <td class="arimo-1" style="font-size:20px;font-weight:bold">
+                        <?php echo $row['id']; ?>
+                    </td>
+                    
+                    <td class="arimo-1" style="font-size:10px;font-weight:bold">
+                        <?php echo $row['year']; ?>
+                    </td>
+                    <td class="arimo-1" style="font-size:10px;font-weight:bold">
+                        <?php echo $row['c1']; ?>
+                    </td>
+                    <td class="arimo-1" style="font-size:10px;font-weight:bold">
+                        <?php echo $row['c2']; ?>
+                    </td>
+                    <td class="arimo-1" style="font-size:10px;font-weight:bold">
+                        <?php echo $row['c3']; ?>
+                    </td>
+                    <td class="arimo-1" style="font-size:10px;font-weight:bold">
+                        <?php echo $row['c4']; ?>
+                    </td>
+                    <td class="arimo-1" style="font-size:10px;font-weight:bold">
+                        <?php echo $row['c5']; ?>
+                    </td>
+                    <td class="arimo-1" style="font-size:10px;font-weight:bold">
+                        <?php echo $row['c6']; ?>
+                    </td>
+                    <td class="arimo-1" style="font-size:10px;font-weight:bold">
+                        <?php echo $row['c7']; ?>
+                    </td>
+                    <td class="arimo-1" style="font-size:10px;font-weight:bold">
+                        <?php echo $row['c8']; ?>
+                    </td>
+                    <td>
+                        <!-- Delete link with ID passed as parameter -->
+                        <a href="process.php?deletec=<?php echo $row['id']; ?>" class="btn btn-danger btn-xl" style="display: inline !important;font-size:20px">Delete</a>
+                    </td>
+                </tr>
+                <?php
+            }
+        } else {
+            echo "<tr><td colspan='4'>0 results</td></tr>";
+        }
+
+        // Close database connection
+       
+        ?>
+    </tbody>
+</table>
       <div class="box-container">
          
          <div class="box">
